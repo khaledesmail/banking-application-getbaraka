@@ -33,7 +33,7 @@ For development, you will need to install Node.js, node global package npm and M
 ```
 ---
 ## Prerequisites
-### Doker
+### Docker
  - #### You can ignore install node.js and mongo if you have docker and need to run the project using it.
 
       Just go on [official Docker website](https://www.docker.com/get-started/) and download the installer.
