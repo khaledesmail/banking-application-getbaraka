@@ -1,0 +1,564 @@
+swagger: "2.0"
+info:
+  description: "banking-application-getbaraka."
+  version: "1.0.0"
+  title: "Banking-Application-GetBaraka"
+host: "localhost:8080"
+basePath: "/rest/api/v1/account"
+schemes:
+- "http"
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  "/signup":
+    post:
+      tags:
+      - "Account"
+      summary: "Create an account"
+      description: "This api to create an account."
+      operationId: "createAccount"
+      produces:
+      - "application/json"
+      parameters:
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/createAccount'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/createAccountResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/signin":
+    post:
+      tags:
+      - "Account"
+      summary: "sigin account"
+      description: "This api to sigin using your account."
+      operationId: "signin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/signin'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/signinResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+              
+  "/":
+    get:
+      security:
+       - Bearer: []
+      tags:
+      - "Account Operations"
+      summary: "get accounts"
+      description: "This api to get accounts."
+      operationId: "getAccounts"
+      produces:
+      - "application/json"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/getAccounts'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'            
+  "/balance/{accountId}":
+    get:
+      security:
+       - Bearer: []
+      tags:
+      - "Account Operations"
+      summary: "get account balance"
+      description: "This api to get account balance."
+      operationId: "getAccountBalance"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: accountId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/getAccountBalance'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'            
+  "/{accountId}":
+    delete:
+      security:
+       - Bearer: []
+      tags:
+      - "Account Operations"
+      summary: "Delete an account"
+      description: "This api to Delete an account."
+      operationId: "deleteAccount"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: accountId
+          type: string
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/deleteAccount'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+              
+  "/money/withdraw/{accountId}":
+    post:
+      tags:
+      - "Money Operations"
+      summary: "Withdraw Money"
+      description: "This api to withdraw money."
+      operationId: "withdrawMoney"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: accountId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/withdrawMoney'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/withdrawMoneyResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/money/deposit/{accountId}":
+    post:
+      tags:
+      - "Money Operations"
+      summary: "deposit Money"
+      description: "This api to deposit money."
+      operationId: "depositMoney"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: accountId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/depositMoney'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/depositMoneyResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/money/transfer/{accountId}":
+    post:
+      tags:
+      - "Money Operations"
+      summary: "transfer Money"
+      description: "This api to transfer money."
+      operationId: "transferMoney"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: accountId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/transferMoney'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/transferMoneyResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/money/international/transfer/{accountId}":
+    post:
+      tags:
+      - "Money Operations"
+      summary: " international transfer Money"
+      description: "This api to international transfer money."
+      operationId: "internationalTransferMoney"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: accountId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/internationalTransferMoney'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/internationalTransferMoneyResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+definitions:
+  createAccount:
+    type: "object"
+    properties:
+      firstName:
+       type: "string"
+       example: "Khaled"
+      lastName:
+       type: "string"
+       example: "esmail"
+      email:
+       type: "string"
+       format: "email"
+      password:
+       type: "string"
+       format: "password"
+  createAccountResponse:
+    type: "object"
+    properties:
+      name:
+       type: "string"
+       example: "Dev"
+      _id:
+       type: "string"
+       example: "624cd54805d8eeb5635cfdfa"
+      firstName:
+       type: "string"
+       example: "Khaled"
+      lastName:
+       type: "string"
+       example: "esmail"
+      email:
+       type: "string"
+       format: "email"
+  signin:
+    type: "object"
+    properties:
+      email:
+       type: "string"
+       format: "email"
+      password:
+       type: "string"
+       format: "password"
+  signinResponse:
+    type: "object"
+    properties:
+      token:
+       type: "string"
+       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTA2ODY2NjQuMjE0LCJleHAiOjE2NTA3NzY2NjQuMjE0LCJlbWFpbCI6ImtoYWxlZEBnbWFpbC5jb20iLCJuYW1lIjoia2hhbGVkIGVzbWFpbCIsImFjY291bnRJZCI6IjYyNjM3YWJmMDI3ZTU5MjUxNDZmMDQ5NCJ9.CtJSkBsovyCJ8JTHsdIKVfWb5yRxXvxDtRx-XqSNw8g"
+  deleteAccount:
+    type: "object"
+  getAccounts:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Data has been retrieved successfully"
+      data:
+        type: array
+        items:
+         type: object
+         properties:
+          _id:
+           type: string
+           format: uuid
+          firstName:
+           type: "string"
+           example: "Khaled"
+          lastName:
+           type: "string"
+           example: "esmail"
+          email:
+           type: "string"
+           format: "email"
+  getAccountBalance:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Data has been retrieved successfully"
+      data:
+        type: array
+        items:
+         type: object
+         properties:
+          accountId:
+            type: "string"
+          balance:
+            type: "number" 
+  withdrawMoney:
+    type: "object"
+    properties:
+      money:
+       type: "number"
+  withdrawMoneyResponse:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Money withdraw successfully"
+      data:
+        type: array
+        items:
+         type: object
+         properties:
+          accountId:
+            type: "string"
+          balance:
+            type: "number" 
+  depositMoney:
+    type: "object"
+    properties:
+      money:
+       type: "number"
+  depositMoneyResponse:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Money deposited successfully"
+      data:
+        type: array
+        items:
+         type: object
+         properties:
+          accountId:
+            type: "string"
+          balance:
+            type: "number" 
+  transferMoney:
+    type: "object"
+    properties:
+      targetAccountId:
+       type: "string"
+      money:
+       type: "number"
+  transferMoneyResponse:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Money transferred successfully"
+      data:
+        type: array
+        items:
+         type: object
+         properties:
+          accountId:
+            type: "string"
+          balance:
+            type: "number" 
+  internationalTransferMoney:
+    type: "object"
+    properties:
+     money:
+      type: "number"
+     targetAccount:
+      type: "object"
+      properties:
+        name:
+         type: "string"
+        address:
+         type: "string"
+     bankInfo:
+      type: "object"
+      properties:
+        bankName:
+         type: "string"
+        SWIFT:
+         type: "string"
+        IBAN:
+         type: "string"
+  internationalTransferMoneyResponse:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+      message:
+       type: "string"
+       example: "Money transferred successfully"
+      data:
+        type: object
+  Error:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+       example: false
+      message:
+       type: "string"
+       example: ""
+      data:
+       type: "object"

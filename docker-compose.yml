@@ -1,0 +1,22 @@
+version: "3"
+services:
+  login-app:
+    container_name: baraka-app
+    image: baraka-app
+    restart: always
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/baraka
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodata:
