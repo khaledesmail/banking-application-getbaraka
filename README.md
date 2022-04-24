@@ -17,7 +17,7 @@ For development, you will need to install Node.js, node global package npm and M
 
 ### A top-level directory layout
  ``` bash.
-    ├── diagrams                  #  Have documentation files
+    ├── definition                  #  Have documentation files
     ├── src                       # Source files 
         ├── api                 
             ├── controller              #  Used in applying validations and calling servcie
@@ -32,6 +32,12 @@ For development, you will need to install Node.js, node global package npm and M
     ├── server.js                #  Runing thre server
 ```
 ---
+## Swagger File
+/definition
+
+![image](https://user-images.githubusercontent.com/20797756/164987997-ba9db165-ff2c-4ce6-85ff-8560363fbb86.png)
+---
+
 ## Prerequisites
 ### Docker
  - #### You can ignore install node.js and mongo if you have docker and need to run the project using it.
